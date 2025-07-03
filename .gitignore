@@ -3,12 +3,12 @@ __pycache__/
 
 
 # Repo ignores
-data/
-wandb/
+**/data/
+**/wandb/
 *.err
 *.out
-outputs/*
-experiments/*
+**/outputs/*
+**/experiments/*
 *.npy
 **/functa_results/*
 *.slurm
