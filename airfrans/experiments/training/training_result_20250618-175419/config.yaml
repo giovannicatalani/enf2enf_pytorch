@@ -1,0 +1,48 @@
+dataset:
+  name: airfrans
+  num_points: null
+  root_path: /scratch/dmsm/gi.catalani/Airfrans/Dataset/
+  target_field: Pressure
+  task: full
+  test_latents_path: /home/dmsm/gi.catalani/Projects/enf-torch/enf-torch-main/experiments/training/2025-05-31_17-41-48/modulations/val_modulations.pt
+  train_latents_path: /home/dmsm/gi.catalani/Projects/enf-torch/enf-torch-main/experiments/training/2025-05-31_17-41-48/modulations/train_modulations.pt
+logging:
+  log_dir: ./experiments/training/
+  save_predictions: true
+model:
+  checkpoint_directory: null
+  condition_value_transform: true
+  emb_freq_q: 2
+  emb_freq_v: 2
+  embedding_type: rff
+  freeze_lat_pos: true
+  gaussian_window: 0.2
+  in_dim: 3
+  latent_bbox:
+  - - -0.5
+    - 0.25
+  - - -0.25
+    - 0.25
+  latent_dim: 10
+  num_heads: 2
+  num_hidden: 256
+  num_latents: 9
+  num_layers: 2
+  num_out: 1
+  spatial_dim: 2
+  use_enhanced_stem: true
+  use_lightweight_self_attn: true
+optim:
+  batch_size: 1
+  epochs: 3000
+  inner_steps: null
+  lr_enf: 0.0001
+  lr_latents: null
+  num_points: 2000
+optimizer:
+  learning_rate_codes: 0.0
+  learning_rate_enf: 0.0001
+proj_name: enf_torch_airfrans_out
+seed: 42
+train:
+  device: cuda

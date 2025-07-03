@@ -1,0 +1,47 @@
+# Common settings
+proj_name: enf_torch_elasticity
+seed: 42
+logging:
+    log_dir: './experiments/training/'
+
+dataset:
+  name: 'elasticity'  # or 'rae_transonic'
+  root_path: '/scratch/dmsm/gi.catalani/Elasticity/'  # adjust path as needed
+  task: 
+  num_points: 
+
+model:
+  num_hidden: 128
+  num_heads: 2
+  num_layers: 0
+  num_out: 2
+  latent_dim: 8
+  gaussian_window: 0.5
+  num_latents: 4
+  coord_dim: 2
+  spatial_dim: 2
+  embedding_type: 'rff'
+  emb_freq_q: 1
+  emb_freq_v: 1
+  condition_value_transform: true
+  freeze_lat_pos: true
+  use_enhanced_stem: false
+  latent_bbox: null  # Set this to the bounding box of your dataset
+  checkpoint_directory: null
+
+optimizer:
+  learning_rate_enf: 0.0001
+  learning_rate_codes: 0.0
+
+train: 
+    device: 'cuda'
+
+optim: 
+  batch_size: 1
+  epochs: 1000
+  inner_steps: 3
+  num_points: 
+  lr_enf: 0.0001
+  lr_latents: 5.0
+
+

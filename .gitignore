@@ -1,0 +1,15 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+
+# Repo ignores
+data/
+wandb/
+*.err
+*.out
+outputs/*
+experiments/*
+*.npy
+**/functa_results/*
+*.slurm
+**/wandb/*

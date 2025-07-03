@@ -1,0 +1,47 @@
+# Common settings
+proj_name: enf_torch_multi_airfoil
+seed: 42
+logging:
+    log_dir: './experiments/training/'
+
+dataset:
+  name: 'multi_airfoil'  # or 'rae_transonic'
+  root_path: '/home/dmsm/gi.catalani/Projects/enf-torch/enf-torch-main/multi_airfoil/data/multi_element_sdf_database.npy'  # adjust path as needed
+  task: null  # for airfrans dataset
+  num_points: null  # optional subsampling
+
+model:
+  num_hidden: 128
+  num_heads: 2
+  num_layers: 0
+  num_out: 1
+  latent_dim: 16
+  gaussian_window: 0.5
+  num_latents: 9
+  coord_dim: 2
+  spatial_dim: 2
+  embedding_type: 'rff'
+  emb_freq_q: 1
+  emb_freq_v: 1
+  condition_value_transform: true
+  freeze_lat_pos: true
+  use_enhanced_stem: false
+  latent_bbox: [[-0.5,0.25],[-0.25,0.25]]  # Set this to the bounding box of your dataset
+  checkpoint_directory: null
+
+optimizer:
+  learning_rate_enf: 0.0001
+  learning_rate_codes: 0.0
+
+train: 
+    device: 'cuda'
+
+optim: 
+  batch_size: 1
+  epochs: 1000
+  inner_steps: 3
+  num_points: 5000
+  lr_enf: 0.0001
+  lr_latents: 5.0
+
+
