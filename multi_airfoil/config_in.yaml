@@ -6,7 +6,7 @@ logging:
 
 dataset:
   name: 'multi_airfoil'  # or 'rae_transonic'
-  root_path: '/home/dmsm/gi.catalani/Projects/enf-torch/enf-torch-main/multi_airfoil/data/multi_element_sdf_database.npy'  # adjust path as needed
+  root_path: '/scratch/dmsm/gi.catalani/NASA_CRM_HL/pyoche_dataset/airfoil_dataset.pch'  # adjust path as needed
   task: null  # for airfrans dataset
   num_points: null  # optional subsampling
 

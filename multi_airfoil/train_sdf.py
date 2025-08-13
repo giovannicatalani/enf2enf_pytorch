@@ -151,6 +151,7 @@ def save_all_modulations(enf, alpha_c, cfg, dataset, device, out_path):
     all_p_list = []
     all_c_list = []
     all_g_list = []
+    all_geom_key_list = []
     loss_list = []
 
     coord_dim   = cfg.model.coord_dim
@@ -163,6 +164,7 @@ def save_all_modulations(enf, alpha_c, cfg, dataset, device, out_path):
     for idx, data in enumerate(tqdm(loader, desc=f"Extracting modulations: {out_path}")):
         flat_x = data.input    # [C, coord_dim] since batch_size=1 => B=1, C = data.num_points
         flat_y = data.output   # [C, out_dim]
+        geometry_key = data.geometry_key
         B = data.num_graphs    # should be 1
         C = flat_x.size(0)
 
@@ -184,6 +186,7 @@ def save_all_modulations(enf, alpha_c, cfg, dataset, device, out_path):
         all_p_list.append(p_cpu)
         all_c_list.append(c_cpu)
         all_g_list.append(g_cpu)
+        all_geom_key_list.append(geometry_key)
 
     # Now stack along a new 0th dimension: N × Z × ...
     all_p = torch.stack(all_p_list, dim=0)  # [N_samples, Z, coord_dim]
@@ -198,7 +201,8 @@ def save_all_modulations(enf, alpha_c, cfg, dataset, device, out_path):
     to_save = {
         "points": all_p,
         "latents": all_c,
-        "gaussian_window": all_g
+        "gaussian_window": all_g,
+        "geometry_keys":all_geom_key_list,
     }
     torch.save(to_save, out_path)
     print(f"→ Saved modulations to {out_path} (N={len(all_p_list)}, Z={Z})")
@@ -223,8 +227,7 @@ def train(cfg: DictConfig):
             random_state=42
         )
         
-    
-    
+     
     # Create test dataset using training normalization
     print("\n2. Creating test dataset...")
     val_ds = MultiElementSDFDataset(
@@ -258,5 +261,8 @@ def train(cfg: DictConfig):
     save_all_modulations(trained_enf, best_alpha_c, cfg, val_ds.processed_dataset, torch.device(cfg.train.device), val_mod_path)
 
     print(f"All done! Modulations for train & val saved under:\n  {train_mod_path}\n  {val_mod_path}")
+    
+    
 if __name__ == "__main__":
+    #os.environ["WANDB_MODE"] = "offline"
     train()

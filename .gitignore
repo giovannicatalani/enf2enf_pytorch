@@ -4,6 +4,8 @@ __pycache__/
 
 # Repo ignores
 **/data/
+**/Rotor37_task/*
+**/multi_airfoil/*
 **/wandb/
 *.err
 *.out
