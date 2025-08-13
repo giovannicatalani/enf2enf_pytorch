@@ -1,7 +1,7 @@
 # Equivariant Neural Field Networks for steady PDE surrogates on general geometries.
 
 This repository contains the Pytorch implementation of enf2enf [Geometry aware inference of steady state PDEs using Equivariant Neural Fields representations](https://arxiv.org/abs/2504.18591), a neural operator approach to solve steady state PDEs on general geometries.
-It is an attempt to translate in Pytorch the Jax implementation of enf2enf at https://github.com/giovannicatalani/enf2enf, and the original JAX implementation of the Equivariant Neural Fields architecture: https://github.com/david-knigge/enf-pde.
+It translates in Pytorch some of the models found in the JAX implementation of the Equivariant Neural Fields architecture: https://github.com/david-knigge/enf-pde.
 
 
 ## Architecture Overview
